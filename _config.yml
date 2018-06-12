@@ -1,1 +1,13 @@
 theme: jekyll-theme-cayman
+title: Utkuhan Genc
+description: Progress journal 
+url: utkuhangenc.github.io/pj
+author: Utkuhan Genc
+social:
+name: Utkuhan Genc
+links:
+- https://www.linkedin.com/in/utkuhangenc
+- https://github.com/utkuhangenc
+show_downloads: false
+gems:
+- jekyll-seo-tag
