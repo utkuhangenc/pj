@@ -331,28 +331,28 @@ library(zoo)</code></pre>
 df &lt;- get_series(series = c(&quot;TP.PY.P02.LON&quot;,&quot;TP.APIFON4&quot;, &quot;TP.DK.USD.A&quot;,&quot;TP.DK.EUR.A&quot;),start_date = &quot;01-01-2002&quot;, end_date = &quot;11-06-2018&quot;)
 
 #Creating a date frame for policy interest rate
-policy &lt;- read.csv(&quot;interest.csv&quot;)  %&gt;% 
+policy &lt;- read.csv(&quot;interest.csv&quot;)  %&gt;%
   mutate(Date = dmy(Tarih))
 
-#Constructing a new table with Policy Interest Rate 
+#Constructing a new table with Policy Interest Rate
 df1 &lt;- df$items %&gt;%
   select(-UNIXTIME)%&gt;%
   na.omit() %&gt;%
-  mutate(Date = dmy(Tarih),Late_Liqudity_Interest_Rate = TP_PY_P02_LON, Weighted_Average_Funding_Cost = TP_APIFON4, Dolar_Rate = TP_DK_USD_A, Euro_Rate = TP_DK_EUR_A) 
+  mutate(Date = dmy(Tarih),Late_Liqudity_Interest_Rate = TP_PY_P02_LON, Weighted_Average_Funding_Cost = TP_APIFON4, Dolar_Rate = TP_DK_USD_A, Euro_Rate = TP_DK_EUR_A)
 df2 &lt;- left_join(df1, policy, by = &quot;Date&quot;) %&gt;% mutate(Policy_Interest_Rate = na.locf(Policy_Interest_Rate,na.rm = FALSE))</code></pre>
 <p>To understand the relationship between the late liquidity window interest rates and o-policy interest rate I created a plot where I can see the positive correlation between the values. I used logaritmic scale on y axis to show the relationship between interest rates, USD/TL and EUR/TL.</p>
 </div>
 <div id="plots" class="section level2">
 <h2>Plots</h2>
-<pre class="r"><code>df2 %&gt;% 
-  ggplot() + 
+<pre class="r"><code>df2 %&gt;%
+  ggplot() +
   geom_line(aes(x = Date, y = Late_Liqudity_Interest_Rate, color = &quot;Late Liqudity Interest Rate&quot;),size=1)+
   geom_line(aes(x = Date, y = Weighted_Average_Funding_Cost ,color = &quot;Weighted Average Funding Cost&quot;), size = 1) +
-  geom_line(aes(x = Date, y = Policy_Interest_Rate, color = &quot;Policy Interest Rate&quot;), size =1) + 
+  geom_line(aes(x = Date, y = Policy_Interest_Rate, color = &quot;Policy Interest Rate&quot;), size =1) +
   geom_line(aes(x = Date, y = Dolar_Rate, color = &quot;Dolar_Rate&quot;),size = 1)+
   geom_line(aes(x = Date, y = Euro_Rate, color = &quot;Euro_Rate&quot;), size = 1)+
-  xlab(&quot;Date&quot;) + 
-  ylab(&quot;Interest Rate&quot;) + 
+  xlab(&quot;Date&quot;) +
+  ylab(&quot;Interest Rate&quot;) +
   ggtitle(&quot;The Relationship Between Late Liqudity Interest Rate and Policy Interest Rate&quot;) +
   theme_bw()+
   scale_y_continuous(trans='log2')+
