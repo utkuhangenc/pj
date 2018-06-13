@@ -2,4 +2,4 @@
 
 [Here](files/kobeanalysis.html) is my first analysis on Kobe Bryant's shot selection throughout his career.
 
-[Here](files/financialanalysis.html) is my first analysis on Turkey's Central Bank's Database (EDVS). I analyzed the relationship between the late liquidity window interest rate and indicative interest rate.
+[Here](files/financialanalysis.html) is my first analysis on Turkey's Central Bank's Database (EVDS). I analyzed the relationship between the late liquidity window interest rate, policy interest rate and currency rates.
