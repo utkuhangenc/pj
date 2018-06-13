@@ -331,28 +331,28 @@ library(zoo)</code></pre>
 df &lt;- get_series(series = c(&quot;TP.PY.P02.LON&quot;,&quot;TP.APIFON4&quot;, &quot;TP.DK.USD.A&quot;,&quot;TP.DK.EUR.A&quot;),start_date = &quot;01-01-2002&quot;, end_date = &quot;11-06-2018&quot;)
 
 #Creating a date frame for policy interest rate
-policy &lt;- read.csv(&quot;interest.csv&quot;)  %&gt;%
+policy &lt;- read.csv(&quot;interest.csv&quot;)  %&gt;% 
   mutate(Date = dmy(Tarih))
 
-#Constructing a new table with Policy Interest Rate
+#Constructing a new table with Policy Interest Rate 
 df1 &lt;- df$items %&gt;%
   select(-UNIXTIME)%&gt;%
   na.omit() %&gt;%
-  mutate(Date = dmy(Tarih),Late_Liqudity_Interest_Rate = TP_PY_P02_LON, Weighted_Average_Funding_Cost = TP_APIFON4, Dolar_Rate = TP_DK_USD_A, Euro_Rate = TP_DK_EUR_A)
+  mutate(Date = dmy(Tarih),Late_Liqudity_Interest_Rate = TP_PY_P02_LON, Weighted_Average_Funding_Cost = TP_APIFON4, Dolar_Rate = TP_DK_USD_A, Euro_Rate = TP_DK_EUR_A) 
 df2 &lt;- left_join(df1, policy, by = &quot;Date&quot;) %&gt;% mutate(Policy_Interest_Rate = na.locf(Policy_Interest_Rate,na.rm = FALSE))</code></pre>
 <p>To understand the relationship between the late liquidity window interest rates and o-policy interest rate I created a plot where I can see the positive correlation between the values. I used logaritmic scale on y axis to show the relationship between interest rates, USD/TL and EUR/TL.</p>
 </div>
 <div id="plots" class="section level2">
 <h2>Plots</h2>
-<pre class="r"><code>df2 %&gt;%
-  ggplot() +
+<pre class="r"><code>df2 %&gt;% 
+  ggplot() + 
   geom_line(aes(x = Date, y = Late_Liqudity_Interest_Rate, color = &quot;Late Liqudity Interest Rate&quot;),size=1)+
   geom_line(aes(x = Date, y = Weighted_Average_Funding_Cost ,color = &quot;Weighted Average Funding Cost&quot;), size = 1) +
-  geom_line(aes(x = Date, y = Policy_Interest_Rate, color = &quot;Policy Interest Rate&quot;), size =1) +
+  geom_line(aes(x = Date, y = Policy_Interest_Rate, color = &quot;Policy Interest Rate&quot;), size =1) + 
   geom_line(aes(x = Date, y = Dolar_Rate, color = &quot;Dolar_Rate&quot;),size = 1)+
   geom_line(aes(x = Date, y = Euro_Rate, color = &quot;Euro_Rate&quot;), size = 1)+
-  xlab(&quot;Date&quot;) +
-  ylab(&quot;Interest Rate&quot;) +
+  xlab(&quot;Date&quot;) + 
+  ylab(&quot;Interest Rate&quot;) + 
   ggtitle(&quot;The Relationship Between Late Liqudity Interest Rate and Policy Interest Rate&quot;) +
   theme_bw()+
   scale_y_continuous(trans='log2')+
@@ -364,6 +364,11 @@ df2 &lt;- left_join(df1, policy, by = &quot;Date&quot;) %&gt;% mutate(Policy_Int
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
 <p>As seen from the graph there are two big jumps on the late liqudity windown interest rate. The first big jump on the late liqudity window interet rate is at the end of the first month of 2014. Aside from this increase there is also a significant change in policy interest rate. This was a decision by CBRT to stabilize the currency rates. We can see the effects of this action as drops on Dolar and Euro exchange rates. Another big jump on policy interest rate and the late liqudity window interest rate is because the recent increase of interests by CBRT. This action was taken to make sure to stabilize the Turkish Lira’s value however as it can be seen from the graph this action was taken so late. Even though the currency rates were increasing in a fast pace, CBRT waited for so long to take action. That’s why there is only a small change in currency rates. However, further reasarch has to be done on this topic. Also the correlation between the late liqudity window interest rate and the weighted average funding cost is another interesting relationship to look at. There seems to be a positive correlation between those two values. Another interesting thing to point out is the latest late liqudity window interest rate announced by CBRT on June 8th 2018 is as high as 20.75 which is the highest value since 2009.</p>
+<div id="about-the-author" class="section level3">
+<h3>About the author</h3>
+<p>I am working as a Data Analyst Intern for Algopoly, also I am a student studying Industrial Engineer, Applied Statistics, and Economics at Purdue. I have an incredible passion for using analytical and intercultural communication skills to solve cross-cultural problems in the business world. I am also working as a NBA Data Analyst Intern for Trendbasket. I use my skills to engage basketball fans in Turkey.</p>
+<p>LinkedIn : <a href="https://www.linkedin.com/in/utkuhangenc/">Utkuhan Genc</a></p>
+</div>
 </div>
 
 
