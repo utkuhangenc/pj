@@ -1,7 +1,7 @@
 ## June 12th 2018
 First Analysis:
 
-[Here](files/kobeanalysis.html) is my first analysis on Kobe Bryant's shot selection throughout his career. 
+[Here](files/kobeanalysis.html) is my first analysis on Kobe Bryant's shot selection throughout his career.
 
 ## June 13th 2018
 Second Analysis:
@@ -13,4 +13,7 @@ Second Analysis:
 [Here](files/pkgdown_starter) is my starter for using pkgdown and building your own website for R packages.
 
 ## EVDS Package
-[Here](https://algopoly.github.io/EVDS/index.html) is the package that I am contributing. This is a API wrapper for Central Bank of Republic of Turkey's offical data base. I did an analysis on CBRT's monetary policies and it's effects on currency rates. I am currently working on my second analysis which would cover house price indices.
+[Here](https://algopoly.github.io/EVDS/index.html) is the package that I am contributing. This is a API wrapper for Central Bank of Republic of Turkey's official data base. I did an analysis on CBRT's monetary policies and it's effects on currency rates. I am currently working on my second analysis which would cover house price indices.
+
+## Housing Bubble Analysis
+[Here](files/housing_bubble.html) I have tried to capture the housing bubble in each region of Turkey using data from Central Bank of Republic of Turkey's official data base. I did an analysis on which cities are "booming" in terms of house price indices and which ones are correlated. 
